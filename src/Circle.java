@@ -47,7 +47,7 @@ public class Circle implements Cloneable{
     @Override
     public Circle clone() {
         try {
-            Circle copy = (Circle) super.clone();
+            Circle copy = (Circle) super.clone(); //shallow copy!
             //copy.center = this.center.clone(); //deep copy!
             return copy;
         }catch(CloneNotSupportedException e){

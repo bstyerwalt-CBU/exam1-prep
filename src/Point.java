@@ -31,14 +31,40 @@ public class Point implements Cloneable {
 
 
     // Override toString
+    @Override
+    public String toString() {
+        return "X = " + x + ", Y = " + y;
+    }
 
 
     // Override Equals
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null && getClass() == obj.getClass()) {
+            Point p = (Point) obj;
+
+            return  (this.x == p.x && this.y == p.y);
+        }
+
+        return false;
+    }
 
 
     // Override hashCode
+    @Override
+    public int hashCode() {
+        return (61 * x) + (227 * y);
+    }
 
 
     // Override clone
-
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        try {
+            Point copy = (Point) super.clone();
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
 }

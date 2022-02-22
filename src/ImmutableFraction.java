@@ -1,5 +1,5 @@
-public class ImmutableFraction implements Cloneable, Comparable<ImmutableFraction> {
-    private int numerator, denominator;
+public final class ImmutableFraction implements Cloneable, Comparable<ImmutableFraction> {
+    private final int numerator, denominator;
 
     public ImmutableFraction(int n) {
         this.numerator = n;
@@ -26,19 +26,6 @@ public class ImmutableFraction implements Cloneable, Comparable<ImmutableFractio
 
     public int getDenominator() {
         return this.denominator;
-    }
-
-    public void setNumerator(int n) {
-        this.numerator = n;
-    }
-
-    public void setDenominator(int d) {
-        this.denominator = d;
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 
     @Override
@@ -68,27 +55,33 @@ public class ImmutableFraction implements Cloneable, Comparable<ImmutableFractio
 
     }
 
-    public void add(ImmutableFraction other) {
-        numerator = numerator * other.denominator + other.numerator * denominator;
-        denominator = denominator * other.denominator;
+    public ImmutableFraction add(ImmutableFraction other) {
+        int n = numerator * other.denominator + other.numerator * denominator;
+        int d = denominator * other.denominator;
+
+        return new ImmutableFraction(n, d);
     }
 
-    public void subtract(ImmutableFraction other) {
-        numerator = numerator * other.denominator - other.numerator * denominator;
-        denominator = denominator * other.denominator;
+    public ImmutableFraction subtract(ImmutableFraction other) {
+        int n = numerator * other.denominator - other.numerator * denominator;
+        int d = denominator * other.denominator;
 
+        return new ImmutableFraction(n,d);
     }
 
-    public void multiply(ImmutableFraction other) {
-        numerator = numerator * other.numerator;
-        denominator = denominator * other.denominator;
+    public ImmutableFraction multiply(ImmutableFraction other) {
+        int n = numerator * other.numerator;
+        int d = denominator * other.denominator;
 
+        return new ImmutableFraction(n,d);
     }
 
-    public void divide(ImmutableFraction other) {
-        numerator = numerator * other.denominator;
-        denominator = denominator * other.numerator;
 
+    public ImmutableFraction divide(ImmutableFraction other) {
+        int n = numerator * other.denominator;
+        int d = denominator * other.numerator;
+
+        return new ImmutableFraction(n,d);
     }
 
     private int gcd(int a, int b) {
